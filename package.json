@@ -1,0 +1,12 @@
+{
+  "name": "parksight-ai",
+  "private": true,
+  "version": "1.0.0",
+  "description": "ParkSight AI — illegal-parking hotspot intelligence platform (monorepo root). The actual frontend package lives in frontend/.",
+  "scripts": {
+    "frontend:install": "npm install --prefix frontend",
+    "frontend:dev": "npm run dev --prefix frontend",
+    "frontend:build": "npm run build --prefix frontend",
+    "frontend:test": "npm run test --prefix frontend"
+  }
+}

@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --evidence-real: #10b981;
+  --evidence-modeled: #5fa8d3;
+  --evidence-partial: #f59e0b;
+  --evidence-spec: #52525b;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: #0a0a0a;
+}
+
+h1, h2, h3, .font-display {
+  font-family: "Sora", sans-serif;
+}
+
+.font-data {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Signature element: every figure in the console carries a small provenance
+   chip — a colored dot + the evidence label it was tagged with by the
+   pipeline. This is deliberate: nothing renders without showing where it
+   came from. */
+.provenance-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  opacity: 0.9;
+  white-space: nowrap;
+}
+
+.provenance-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* "Obsidian Flare" card treatment — used by Panel/KpiCard for the glassy,
+   glow-on-hover surface that defines the redesign. */
+.flare-card {
+  background: rgba(22, 22, 23, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid #27272a;
+  position: relative;
+  transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flare-card:hover {
+  border-color: #ff3b00;
+  box-shadow: 0 0 20px rgba(255, 59, 0, 0.12);
+}
+
+.glow-dot {
+  box-shadow: 0 0 8px #ff3b00, 0 0 16px #ff3b00;
+}
+
+/* Visible keyboard focus everywhere, including custom controls. */
+:focus-visible {
+  outline: 2px solid #ff3b00;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Scrollbar treatment — subtle, matches the obsidian palette. */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #27272a; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #3a393a; }
+
+html, body, #root {
+  height: 100%;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #111827 !important;
+  color: #e5e7eb !important;
+  border: 1px solid #374151 !important;
+}
+
+.leaflet-popup-tip {
+  background: #111827 !important;
+}
