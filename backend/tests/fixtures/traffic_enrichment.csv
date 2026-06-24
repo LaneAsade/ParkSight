@@ -1,0 +1,4 @@
+cluster_id,n_directions_attempted,n_directions_succeeded,mean_congestion_index,mean_avg_speed_kmh,mean_delay_minutes,validation_status
+0,8,6,1.82,21.5,6.4,REAL_DATA
+1,8,3,1.55,24.0,4.1,PARTIAL
+2,8,0,,,,SPEC_ONLY

@@ -1,0 +1,19 @@
+{
+  "validation_status": "REAL_DATA",
+  "n_total_rows": 5200,
+  "n_approved": 4700,
+  "approved_pct": 90.4,
+  "n_distinct_police_stations": 4,
+  "n_distinct_junctions": 4,
+  "date_range_actual_ist": ["2023-11-02T00:05:00", "2024-03-30T23:58:00"],
+  "median_adjudication_rate": 0.92,
+  "review_backlog_months": {"2024-03": 0.31},
+  "validation_backlog_warning": "Month(s) ['2024-03'] have an adjudication rate far below the typical month (92% median). Exclude from trend analysis.",
+  "filename_date_mismatch_warning": "Filename implies 'jan-to-may', but actual timestamps span 2023-11 to 2024-03.",
+  "months_used": ["2023-11", "2023-12", "2024-01", "2024-02"],
+  "excluded_months": ["2024-03"],
+  "mean_mae_persistence": 18.4,
+  "mae_95pct_ci": [12.1, 25.7],
+  "learned_model": null,
+  "honest_caveat": "Only 4 usable calendar month(s). Persistence baseline is the only defensible forecast."
+}

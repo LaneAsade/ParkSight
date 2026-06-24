@@ -1,0 +1,5 @@
+cluster_id,top_junction,police_station,district,violations,n_junctions,pct_at_junction,pct_peak_hour,top_vehicle,peak_hour,lat,lon,risk_score,risk_tier
+0,Silk Board Junction,Koramangala PS,South Bengaluru,1450,3,88.2,61.4,CAR,9,12.917,77.623,97.5,CRITICAL
+1,Hebbal Flyover Junction,Hebbal PS,North Bengaluru,820,2,71.0,40.1,BUS (BMTC/KSRTC),18,13.035,77.597,78.2,HIGH
+2,Tin Factory Junction,Whitefield PS,East Bengaluru,310,1,60.5,22.0,SCOOTER,11,12.997,77.665,41.0,MEDIUM
+3,RT Nagar Main Road,Rajajinagar PS,Central Bengaluru,120,1,55.0,18.0,MOTOR CYCLE,7,13.020,77.598,15.0,LOW

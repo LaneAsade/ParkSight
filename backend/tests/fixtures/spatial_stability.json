@@ -1,0 +1,7 @@
+{
+  "validation_status": "REAL_DATA",
+  "n_districts_tested": 4,
+  "n_critical_clusters_global": 1,
+  "mean_critical_set_jaccard": 0.64,
+  "interpretation": "STABLE: CRITICAL-tier membership is robust across district holdouts."
+}

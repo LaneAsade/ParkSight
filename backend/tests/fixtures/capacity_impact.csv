@@ -1,0 +1,4 @@
+cluster_id,road_class,lane_count,road_width_m,capacity_loss_pct,erci_index,capacity_loss_tier,geometry_source,validation_status,confidence_level
+0,arterial_major,4,15.0,24.1,75.9,MEDIUM,OPENSTREETMAP,REAL_DATA,HIGH
+1,arterial_minor,2,8.0,18.4,81.6,MEDIUM,ENGINEERING_ESTIMATE,SPEC_ONLY,LOW
+2,collector,2,7.5,9.2,90.8,LOW,OPENSTREETMAP,REAL_DATA,HIGH

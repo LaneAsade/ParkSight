@@ -1,0 +1,8 @@
+{
+  "validation_status": "REAL_DATA",
+  "sample_size": 4700,
+  "excluded_unadjudicated_rows": 500,
+  "mcfadden_pseudo_r2": 0.071,
+  "balanced_accuracy_supplementary": 0.58,
+  "interpretation": "LOW (<0.10): approval is largely independent of these features."
+}

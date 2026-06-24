@@ -1,0 +1,6 @@
+claim,value,status,source,confidence
+Total approved violations in source CSV,4700,REAL_DATA,violations.csv,—
+DBSCAN hotspot cluster count,4 clusters,REAL_DATA,hotspot_detection.py,90% CI bootstrap
+Mean congestion index from Distance Matrix probing,1.82,REAL_DATA,Google Distance Matrix API,2 of 3 hotspots
+Hotspots where traffic probe failed entirely,1 of 3,SPEC_ONLY,traffic_enrichment.py,no key / API failure
+Annual economic impact,MODELED placeholder,MODELED,economic model,fixed-rate assumptions

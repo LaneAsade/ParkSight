@@ -1,0 +1,18 @@
+# ParkSight AI — FastAPI backend requirements
+
+# Web framework
+fastapi>=0.110
+uvicorn[standard]>=0.29
+
+# Pipeline + data
+numpy>=1.24
+pandas>=2.0
+scipy>=1.11
+scikit-learn>=1.3
+requests>=2.31
+pyyaml>=6.0
+python-dotenv>=1.0
+
+# Testing
+pytest>=8.0
+httpx>=0.27
