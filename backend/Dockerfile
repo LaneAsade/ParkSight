@@ -26,6 +26,8 @@ RUN pip install --no-cache-dir -r /srv/backend/requirements.txt
 
 COPY backend/app /srv/backend/app
 COPY config /srv/config
+COPY outputs /srv/outputs
+COPY data /srv/data
 
 WORKDIR /srv/backend
 ENV PARKSIGHT_OUTPUT_DIR=/srv/outputs \
