@@ -6,10 +6,8 @@ import {
   TrafficCone,
   ShieldCheck,
   TrendingUp,
-  IndianRupee,
   ListChecks,
   SlidersHorizontal,
-  MessageSquareText,
   Radio,
   BarChart3,       // Executive
 } from "lucide-react";
@@ -22,10 +20,8 @@ const NAV_ITEMS = [
   { to: "/congestion", label: "Congestion", icon: TrafficCone },
   { to: "/patrol", label: "Patrol", icon: ShieldCheck },
   { to: "/forecast", label: "Forecast", icon: TrendingUp },
-  { to: "/economic", label: "Economic", icon: IndianRupee },
   { to: "/evidence", label: "Evidence", icon: ListChecks },
   { to: "/scenarios", label: "Scenarios", icon: SlidersHorizontal },
-  { to: "/copilot", label: "AI Copilot", icon: MessageSquareText },
 ];
 
 const STATUS_STYLES = {

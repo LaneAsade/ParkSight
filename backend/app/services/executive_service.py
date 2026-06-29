@@ -14,7 +14,13 @@ from .economic_service import simulate_economic
 def executive_summary(loader: ArtifactLoader) -> Dict[str, Any]:
     scores = compute_impact_scores(loader)
     intel = congestion_intelligence(loader)
-    econ = simulate_economic(loader)
+    econ = simulate_economic(
+        loader,
+        fuel_cost_per_litre=None,
+        wage_inr_per_hour=None,
+        enforcement_effectiveness_pct=55.0,
+        scenario_multiplier=1.0,
+    )
 
     top5_drivers = scores[:5]
 

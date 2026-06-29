@@ -19,12 +19,11 @@ export default function ForecastPage() {
 
       {!loading && !error && data && (
         <div className="space-y-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {[
               { label: "Months used", value: data.months_used?.length ?? "—" },
               { label: "Months excluded", value: data.excluded_months?.length ?? "—" },
               { label: "Persistence MAE", value: data.persistence_mae ?? "—" },
-              { label: "Learned model", value: data.learned_model_available ? "Available" : "Not available" },
             ].map(({ label, value }) => (
               <Panel key={label} title={label}>
                 <div className="text-2xl font-display font-bold text-amber-400">{value}</div>

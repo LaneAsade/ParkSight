@@ -15,7 +15,9 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 
-def current_patrol(loader: ArtifactLoader, n_teams: int) -> Dict[str, Any]:
+def current_patrol(loader: ArtifactLoader, n_teams: int = None) -> Dict[str, Any]:
+    if n_teams is None:
+        n_teams = loader._config.default_patrol_teams
     plan = loader.read_csv("patrol_plan", required=False)
     merged, _ = loader.merged_hotspots()
     n_clusters = len(merged)
@@ -63,15 +65,19 @@ def simulate_patrol(loader: ArtifactLoader, merged: pd.DataFrame, n_teams: int) 
         n_clusters = len(merged)
         n_critical = int((merged["risk_tier"] == "CRITICAL").sum()) if "risk_tier" in merged.columns else 0
         if plan is None or plan.empty:
-            return {"validation_status": "SPEC_ONLY", "critical_covered": 0,
-                    "critical_total": n_critical, "overall_coverage_pct": 0.0}
+            return {"validation_status": "SPEC_ONLY", "n_teams_requested": n_teams,
+                    "critical_covered": 0, "critical_total": n_critical,
+                    "overall_coverage_pct": 0.0, "shift_capacities": {}, "assignments": []}
         base = len(plan["cluster_id"].unique()) if "cluster_id" in plan.columns else 0
         scaled = min(n_clusters, max(base, round(base * n_teams / max(app_config.default_patrol_teams, 1))))
         return {
             "validation_status": "MODELED",
+            "n_teams_requested": n_teams,
             "critical_covered": min(n_critical, n_teams),
             "critical_total": n_critical,
             "overall_coverage_pct": round(scaled / max(n_clusters, 1) * 100, 1),
+            "shift_capacities": {},
+            "assignments": [],
         }
 
     from parksight.hotspot_detection import HotspotCluster
@@ -99,10 +105,5 @@ def simulate_patrol(loader: ArtifactLoader, merged: pd.DataFrame, n_teams: int) 
     result = milp_assignment(clusters, n_teams, settings)
     n_clusters = len(clusters)
     covered = len(set(a["cluster_id"] for a in result.get("assignments", [])))
-    return {
-        "validation_status": "MODELED",
-        "critical_covered": result.get("critical_covered", 0),
-        "critical_total": result.get("critical_total", 0),
-        "overall_coverage_pct": round(covered / max(n_clusters, 1) * 100, 1),
-        "n_assignments": result.get("n_assignments", 0),
-    }
+    result["overall_coverage_pct"] = round(covered / max(n_clusters, 1) * 100, 1)
+    return result

@@ -281,12 +281,6 @@ export default function OverviewPage() {
           {/* Quick actions */}
           <div className="p-3 border-t border-gray-800 space-y-2">
             <Link
-              to="/copilot"
-              className="flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-amber-400/10 border border-amber-400/30 text-amber-400 text-sm font-semibold hover:bg-amber-400/20 transition-colors"
-            >
-              🤖 Ask AI Copilot
-            </Link>
-            <Link
               to="/scenarios"
               className="flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-gray-800 border border-gray-700 text-gray-300 text-sm hover:bg-gray-700 transition-colors"
             >

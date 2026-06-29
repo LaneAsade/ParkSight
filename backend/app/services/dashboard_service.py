@@ -29,9 +29,9 @@ def build_overview(loader: ArtifactLoader, default_teams: int) -> Dict[str, Any]
                 cong_status = "PARTIAL"
     except Exception:
         merged = pd.DataFrame()
-        n_clusters = 0
-        n_critical = 0
-        n_districts = 0
+        n_clusters = None
+        n_critical = None
+        n_districts = None
         mean_cong = None
         cong_status = "SPEC_ONLY"
         diag = {}
@@ -39,16 +39,19 @@ def build_overview(loader: ArtifactLoader, default_teams: int) -> Dict[str, Any]
     nj = loader.read_csv("nonjunction_hotspots", required=False)
     n_nonjunction = int(len(nj)) if nj is not None else 0
 
-    patrol = loader.read_csv("patrol_plan", required=False)
     patrol_coverage = None
     patrol_teams = default_teams
-    if patrol is not None and not patrol.empty and n_clusters > 0:
-        covered = int(patrol["cluster_id"].nunique()) if "cluster_id" in patrol.columns else 0
-        patrol_coverage = round(covered / n_clusters * 100, 1)
+    if n_clusters and not merged.empty:
+        try:
+            from .patrol_service import simulate_patrol
+            sim = simulate_patrol(loader, merged, default_teams)
+            patrol_coverage = sim.get("overall_coverage_pct")
+        except Exception:
+            patrol_coverage = None
 
     evidence_counts: Dict[str, int] = {}
-    if evidence is not None and not evidence.empty and "validation_status" in evidence.columns:
-        evidence_counts = {str(k): int(v) for k, v in evidence["validation_status"].value_counts().items()}
+    if evidence is not None and not evidence.empty and "status" in evidence.columns:
+        evidence_counts = {str(k): int(v) for k, v in evidence["status"].value_counts().items()}
 
     last_update = None
     for name in ("hotspot_clusters", "evidence_ledger", "executive_report"):
@@ -58,7 +61,7 @@ def build_overview(loader: ArtifactLoader, default_teams: int) -> Dict[str, Any]
             break
 
     return {
-        "total_approved_violations": temporal.get("n_approved", 0),
+        "total_approved_violations": temporal.get("n_approved"),
         "approval_pct": temporal.get("approved_pct"),
         "n_hotspot_clusters": n_clusters,
         "n_critical_hotspots": n_critical,

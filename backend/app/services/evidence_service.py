@@ -7,19 +7,13 @@ from .artifact_loader import ArtifactLoader
 def evidence_summary(loader: ArtifactLoader) -> Dict[str, Any]:
     df = loader.read_csv("evidence_ledger", required=False)
     if df is None or df.empty:
-        return {
-            "validation_status": "SPEC_ONLY",
-            "skipped_reason": "No evidence_ledger artifact found.",
-            "total_claims": 0,
-            "status_counts": {},
-        }
+        return {"total": 0, "counts": {}}
     df = df.replace({np.nan: None})
-    counts = {str(k): int(v) for k, v in df["validation_status"].value_counts().items()} \
-        if "validation_status" in df.columns else {}
+    counts = {str(k): int(v) for k, v in df["status"].value_counts().items()} \
+        if "status" in df.columns else {}
     return {
-        "validation_status": "REAL_DATA",
-        "total_claims": len(df),
-        "status_counts": counts,
+        "total": len(df),
+        "counts": counts,
     }
 
 
@@ -37,11 +31,11 @@ def list_evidence(
     df = df.replace({np.nan: None})
 
     if status:
-        df = df[df["validation_status"] == status.upper()]
+        df = df[df["status"] == status.upper()]
     if search:
         df = df[df["claim"].str.contains(search, case=False, na=False)]
     if source:
-        df = df[df["source_module"] == source] if "source_module" in df.columns else df
+        df = df[df["source"] == source] if "source" in df.columns else df
 
     total = len(df)
     page = df.iloc[offset: offset + limit]
